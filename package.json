@@ -19,7 +19,9 @@
   "homepage": "https://github.com/durden2/DataSetsBackend#readme",
   "dependencies": {
     "babel": "^6.5.2",
+    "csv-parse": "^1.1.7",
     "express": "^4.14.0",
+    "should": "^11.1.0",
     "socket-io": "0.0.0"
   },
   "devDependencies": {

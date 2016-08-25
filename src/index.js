@@ -18,8 +18,6 @@ io.on('connection', function(socket){
 });
 
 http.listen(4000, function(){
-  var msg = parse();
-  console.log(msg);
-  setInterval(function() {io.emit('availableFiles', msg);}, 500);
+  parse();
   console.log('listening on *:4000');
 });
