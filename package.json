@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/durden2/DataSetsBackend#readme",
   "dependencies": {
+    "babel": "^6.5.2",
     "express": "^4.14.0",
     "socket-io": "0.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0"
   }
 }
