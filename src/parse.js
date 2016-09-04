@@ -1,20 +1,24 @@
 require("babel-polyfill");
 import fs from 'fs';
-var csvparse = require('csv-parse');
+var csvparse = require('fast-csv');
 import io from 'socket.io-client';
 
-export default function parse() {
-  var socket = io('http://localhost:4000');
-  socket.emit('availableFiles', "data");
-   var files = fs.readdirSync('../backend/files');
-   var f = new Array();
-   fs.createReadStream('D:/dupa.csv')
-   .pipe(csvparse())
-   .on('data', function (data) {
-     // Add a connect listener
-     console.log(data);
+exports = module.exports = (io) => {
+  io.sockets.on('connection', (socket) => {
+    socket.on('parse', (data) => {
+      parsuj(data, io);
+    });
+  });
+}
 
-
-
-});
+function parsuj(file, io) {
+  var t = new Array();
+  csvparse
+   .fromPath("./files/" + file, {headers: true, delimiter: ","})
+   .on("data", function(data){
+      t.push(data);
+   })
+   .on("end", function(){
+     io.emit('parsed', t);
+    });
 }
