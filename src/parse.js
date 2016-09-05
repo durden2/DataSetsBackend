@@ -14,7 +14,7 @@ exports = module.exports = (io) => {
 function parsuj(file, io) {
   var t = new Array();
   csvparse
-   .fromPath("./files/" + file, {headers: true, delimiter: ","})
+   .fromPath("./files/" + file, {headers: true, delimiter: ";"})
    .on("data", function(data){
       t.push(data);
    })

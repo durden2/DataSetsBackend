@@ -3,7 +3,9 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 require("babel-polyfill");
 import getFiles from './getFiles.js';
-var parse = require('./parse.js')(io);
+var parseCSV = require('./parse.js')(io);
+var parseXML = require('./parseXML.js')(io);
+var build = require('./build.js')(io);
 
 app.get('/', function(req, res){
   res.send('<h1>Hello world</h1>');
