@@ -13,12 +13,18 @@ exports = module.exports = (io) => {
 
 function parsuj(file, io) {
   var t = new Array();
+  var i = 0;
   csvparse
-   .fromPath("./files/" + file, {headers: true, delimiter: ";"})
+   .fromPath("./files/" + file, {headers: true, delimiter: ","})
    .on("data", function(data){
+     if(i > 2){
+       io.emit('parsed', t);
+       return true;
+     }
       t.push(data);
+      i++;
    })
    .on("end", function(){
-     io.emit('parsed', t);
+
     });
 }
