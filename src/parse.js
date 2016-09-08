@@ -15,14 +15,16 @@ function parsuj(file, io) {
   var t = new Array();
   var i = 0;
   csvparse
-   .fromPath("./files/" + file, {headers: true, delimiter: ","})
+   .fromPath("./files/" + file, {headers: true})
    .on("data", function(data){
-     if(i > 2){
+     if(i == 2){
        io.emit('parsed', t);
+       i++;
        return true;
-     }
+     }else{
       t.push(data);
       i++;
+    }
    })
    .on("end", function(){
 

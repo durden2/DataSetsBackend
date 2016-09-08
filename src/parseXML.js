@@ -15,7 +15,6 @@ function parsujXML(file, io) {
   var parser = new xml2js.Parser();
     fs.readFile("./files/" + file, function(err, data) {
         parser.parseString(data, function (err, result) {
-          console.log("d");
           io.emit('parsedXML', result);
         });
     });
